@@ -20,11 +20,24 @@ run_sim:
 	vsim -64 -voptargs="+acc" \
 	-L test \
 	-L def_lib -lib def_lib def_lib.tb_top \
-	-do "run -all" \
+	-do "run -all"
+
+pyuvm_ghdl:
+	make -C pyuvm SIM=ghdl && \
+	make -C pyuvm cleanall SIM=ghdl
+
+pyuvm_ghdl_docker:
+	make -C docker image && \
+	docker run --rm \
+		--volume="$(shell pwd):/data/project" \
+		--workdir="/data/project" \
+		-u `id -u $USER`:`id -g $USER` \
+		ghdl-cocotb-pyuvm:upstream-1.6.2-2.7.0 \
+		make pyuvm_ghdl
 
 all: \
 	create_libs \
 	map_libs \
 	comp_vhd \
 	comp_sv \
-	run_sim \
+	run_sim

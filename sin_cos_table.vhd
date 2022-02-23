@@ -19,8 +19,8 @@ use ieee.math_real.all;
 ----------------------------------------------------------------------------------------------------------------------------------
 entity sin_cos_table is
     port(
-          iCLK                      : in std_logic
-        ; iPHASE_V                  : in std_logic
+--          iCLK                      : in std_logic
+          iPHASE_V                  : in std_logic
         ; iPHASE                    : in unsigned(11 downto 0)
         ; oSINCOS_V                 : out std_logic
         ; oSIN                      : out signed(15 downto 0)
@@ -108,7 +108,12 @@ architecture behavioral of sin_cos_table is
             , ob_cos
                 : signed(15 downto 0) := (others => '0');
 
+    signal iCLK : std_logic := '0';
+
 begin
+
+    iCLK <= not iCLK after 0.5 ns;
+
 ----------------------------------------------------------------------------------------------------------------------------------
 -- input
 ----------------------------------------------------------------------------------------------------------------------------------

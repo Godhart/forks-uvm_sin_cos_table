@@ -31,7 +31,7 @@ pyuvm_ghdl_docker:
 	docker run --rm \
 		--volume="$(shell pwd):/data/project" \
 		--workdir="/data/project" \
-		-u `id -u $USER`:`id -g $USER` \
+		-u $(shell id -u \$USER):$(shell id -g \$USER) \
 		ghdl-cocotb-pyuvm:upstream-1.6.2-2.7.0 \
 		make pyuvm_ghdl
 

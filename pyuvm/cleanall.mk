@@ -9,4 +9,5 @@ cleanall: check clean
 	@rm -rf sim_build
 	@rm -rf modelsim.ini
 	@rm -rf transcript
-
+	@rm -rf *.o
+	@rm -rf sin_cos_table

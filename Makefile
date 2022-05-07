@@ -26,6 +26,10 @@ pyuvm_ghdl:
 	make -C pyuvm SIM=ghdl && \
 	make -C pyuvm cleanall SIM=ghdl
 
+pyuvm_questa:
+	make -C pyuvm SIM=questa && \
+	make -C pyuvm cleanall SIM=questa
+
 pyuvm_ghdl_docker:
 	make -C docker image && \
 	docker run --rm \
